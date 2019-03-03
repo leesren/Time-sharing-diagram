@@ -6,3 +6,5 @@
 效果：
 
 <img src="./screenshot.png" style="width:400px">
+
+[Online Demo](https://leesren.github.io/Time-sharing-diagram/index.html)
