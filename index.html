@@ -1,0 +1,1946 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="https://unpkg.com/echarts@4.1.0/dist/echarts-en.common.min.js"></script>
+    <title>分时图绘制</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      .stk_pic {
+        width: 100%;
+        height: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="echartid" class="stk_pic"></div>
+    <script>
+      var data_list = {
+        ret: 0,
+        msg: "OK",
+        dClose: 27.989999771118164,
+        vRTMinData: [
+          {
+            volume: 3335,
+            avg_price: 28.1,
+            lot_volume: 3335,
+            timestamp: 1551576600000,
+            current: 28.1
+          },
+          {
+            volume: 10900,
+            avg_price: 28.14,
+            lot_volume: 10900,
+            timestamp: 1551576660000,
+            current: 28.13
+          },
+          {
+            volume: 10161,
+            avg_price: 28.138,
+            lot_volume: 10161,
+            timestamp: 1551576720000,
+            current: 28.08
+          },
+          {
+            volume: 6346,
+            avg_price: 28.119,
+            lot_volume: 6346,
+            timestamp: 1551576780000,
+            current: 28.01
+          },
+          {
+            volume: 7668,
+            avg_price: 28.099,
+            lot_volume: 7668,
+            timestamp: 1551576840000,
+            current: 28.05
+          },
+          {
+            volume: 3875,
+            avg_price: 28.097,
+            lot_volume: 3875,
+            timestamp: 1551576900000,
+            current: 28.05
+          },
+          {
+            volume: 5104,
+            avg_price: 28.094,
+            lot_volume: 5104,
+            timestamp: 1551576960000,
+            current: 28.05
+          },
+          {
+            volume: 7830,
+            avg_price: 28.089,
+            lot_volume: 7830,
+            timestamp: 1551577020000,
+            current: 28.02
+          },
+          {
+            volume: 6467,
+            avg_price: 28.075,
+            lot_volume: 6467,
+            timestamp: 1551577080000,
+            current: 27.92
+          },
+          {
+            volume: 5635,
+            avg_price: 28.061,
+            lot_volume: 5635,
+            timestamp: 1551577140000,
+            current: 27.87
+          },
+          {
+            volume: 4500,
+            avg_price: 28.048,
+            lot_volume: 4500,
+            timestamp: 1551577200000,
+            current: 27.89
+          },
+          {
+            volume: 5257,
+            avg_price: 28.038,
+            lot_volume: 5257,
+            timestamp: 1551577260000,
+            current: 27.9
+          },
+          {
+            volume: 4188,
+            avg_price: 28.032,
+            lot_volume: 4188,
+            timestamp: 1551577320000,
+            current: 27.91
+          },
+          {
+            volume: 4138,
+            avg_price: 28.025,
+            lot_volume: 4138,
+            timestamp: 1551577380000,
+            current: 27.86
+          },
+          {
+            volume: 5902,
+            avg_price: 28.014,
+            lot_volume: 5902,
+            timestamp: 1551577440000,
+            current: 27.84
+          },
+          {
+            volume: 4422,
+            avg_price: 28.005,
+            lot_volume: 4422,
+            timestamp: 1551577500000,
+            current: 27.83
+          },
+          {
+            volume: 5285,
+            avg_price: 27.997,
+            lot_volume: 5285,
+            timestamp: 1551577560000,
+            current: 27.89
+          },
+          {
+            volume: 3116,
+            avg_price: 27.993,
+            lot_volume: 3116,
+            timestamp: 1551577620000,
+            current: 27.87
+          },
+          {
+            volume: 2519,
+            avg_price: 27.99,
+            lot_volume: 2519,
+            timestamp: 1551577680000,
+            current: 27.84
+          },
+          {
+            volume: 2990,
+            avg_price: 27.986,
+            lot_volume: 2990,
+            timestamp: 1551577740000,
+            current: 27.83
+          },
+          {
+            volume: 8109,
+            avg_price: 27.972,
+            lot_volume: 8109,
+            timestamp: 1551577800000,
+            current: 27.72
+          },
+          {
+            volume: 12604,
+            avg_price: 27.941,
+            lot_volume: 12604,
+            timestamp: 1551577860000,
+            current: 27.65
+          },
+          {
+            volume: 6274,
+            avg_price: 27.93,
+            lot_volume: 6274,
+            timestamp: 1551577920000,
+            current: 27.74
+          },
+          {
+            volume: 3436,
+            avg_price: 27.924,
+            lot_volume: 3436,
+            timestamp: 1551577980000,
+            current: 27.72
+          },
+          {
+            volume: 6004,
+            avg_price: 27.915,
+            lot_volume: 6004,
+            timestamp: 1551578040000,
+            current: 27.66
+          },
+          {
+            volume: 7591,
+            avg_price: 27.902,
+            lot_volume: 7591,
+            timestamp: 1551578100000,
+            current: 27.66
+          },
+          {
+            volume: 3874,
+            avg_price: 27.897,
+            lot_volume: 3874,
+            timestamp: 1551578160000,
+            current: 27.72
+          },
+          {
+            volume: 3288,
+            avg_price: 27.893,
+            lot_volume: 3288,
+            timestamp: 1551578220000,
+            current: 27.7
+          },
+          {
+            volume: 3643,
+            avg_price: 27.888,
+            lot_volume: 3643,
+            timestamp: 1551578280000,
+            current: 27.67
+          },
+          {
+            volume: 2435,
+            avg_price: 27.885,
+            lot_volume: 2435,
+            timestamp: 1551578340000,
+            current: 27.68
+          },
+          {
+            volume: 2262,
+            avg_price: 27.883,
+            lot_volume: 2262,
+            timestamp: 1551578400000,
+            current: 27.74
+          },
+          {
+            volume: 1164,
+            avg_price: 27.882,
+            lot_volume: 1164,
+            timestamp: 1551578460000,
+            current: 27.72
+          },
+          {
+            volume: 1407,
+            avg_price: 27.88,
+            lot_volume: 1407,
+            timestamp: 1551578520000,
+            current: 27.7
+          },
+          {
+            volume: 1186,
+            avg_price: 27.879,
+            lot_volume: 1186,
+            timestamp: 1551578580000,
+            current: 27.75
+          },
+          {
+            volume: 1607,
+            avg_price: 27.878,
+            lot_volume: 1607,
+            timestamp: 1551578640000,
+            current: 27.76
+          },
+          {
+            volume: 1513,
+            avg_price: 27.877,
+            lot_volume: 1513,
+            timestamp: 1551578700000,
+            current: 27.74
+          },
+          {
+            volume: 2958,
+            avg_price: 27.874,
+            lot_volume: 2958,
+            timestamp: 1551578760000,
+            current: 27.68
+          },
+          {
+            volume: 3434,
+            avg_price: 27.871,
+            lot_volume: 3434,
+            timestamp: 1551578820000,
+            current: 27.72
+          },
+          {
+            volume: 2960,
+            avg_price: 27.868,
+            lot_volume: 2960,
+            timestamp: 1551578880000,
+            current: 27.68
+          },
+          {
+            volume: 3052,
+            avg_price: 27.865,
+            lot_volume: 3052,
+            timestamp: 1551578940000,
+            current: 27.67
+          },
+          {
+            volume: 6817,
+            avg_price: 27.856,
+            lot_volume: 6817,
+            timestamp: 1551579000000,
+            current: 27.62
+          },
+          {
+            volume: 6081,
+            avg_price: 27.848,
+            lot_volume: 6081,
+            timestamp: 1551579060000,
+            current: 27.57
+          },
+          {
+            volume: 5371,
+            avg_price: 27.841,
+            lot_volume: 5371,
+            timestamp: 1551579120000,
+            current: 27.6
+          },
+          {
+            volume: 4510,
+            avg_price: 27.836,
+            lot_volume: 4510,
+            timestamp: 1551579180000,
+            current: 27.62
+          },
+          {
+            volume: 4882,
+            avg_price: 27.831,
+            lot_volume: 4882,
+            timestamp: 1551579240000,
+            current: 27.6
+          },
+          {
+            volume: 1804,
+            avg_price: 27.83,
+            lot_volume: 1804,
+            timestamp: 1551579300000,
+            current: 27.67
+          },
+          {
+            volume: 1037,
+            avg_price: 27.829,
+            lot_volume: 1037,
+            timestamp: 1551579360000,
+            current: 27.67
+          },
+          {
+            volume: 2321,
+            avg_price: 27.827,
+            lot_volume: 2321,
+            timestamp: 1551579420000,
+            current: 27.64
+          },
+          {
+            volume: 925,
+            avg_price: 27.826,
+            lot_volume: 925,
+            timestamp: 1551579480000,
+            current: 27.67
+          },
+          {
+            volume: 1859,
+            avg_price: 27.825,
+            lot_volume: 1859,
+            timestamp: 1551579540000,
+            current: 27.64
+          },
+          {
+            volume: 2257,
+            avg_price: 27.823,
+            lot_volume: 2257,
+            timestamp: 1551579600000,
+            current: 27.64
+          },
+          {
+            volume: 1514,
+            avg_price: 27.822,
+            lot_volume: 1514,
+            timestamp: 1551579660000,
+            current: 27.63
+          },
+          {
+            volume: 3039,
+            avg_price: 27.819,
+            lot_volume: 3039,
+            timestamp: 1551579720000,
+            current: 27.65
+          },
+          {
+            volume: 1300,
+            avg_price: 27.818,
+            lot_volume: 1300,
+            timestamp: 1551579780000,
+            current: 27.66
+          },
+          {
+            volume: 1473,
+            avg_price: 27.817,
+            lot_volume: 1473,
+            timestamp: 1551579840000,
+            current: 27.68
+          },
+          {
+            volume: 2705,
+            avg_price: 27.816,
+            lot_volume: 2705,
+            timestamp: 1551579900000,
+            current: 27.63
+          },
+          {
+            volume: 3139,
+            avg_price: 27.813,
+            lot_volume: 3139,
+            timestamp: 1551579960000,
+            current: 27.66
+          },
+          {
+            volume: 995,
+            avg_price: 27.813,
+            lot_volume: 995,
+            timestamp: 1551580020000,
+            current: 27.67
+          },
+          {
+            volume: 6570,
+            avg_price: 27.807,
+            lot_volume: 6570,
+            timestamp: 1551580080000,
+            current: 27.6
+          },
+          {
+            volume: 1108,
+            avg_price: 27.806,
+            lot_volume: 1108,
+            timestamp: 1551580140000,
+            current: 27.6
+          },
+          {
+            volume: 1426,
+            avg_price: 27.805,
+            lot_volume: 1426,
+            timestamp: 1551580200000,
+            current: 27.62
+          },
+          {
+            volume: 1192,
+            avg_price: 27.804,
+            lot_volume: 1192,
+            timestamp: 1551580260000,
+            current: 27.65
+          },
+          {
+            volume: 1229,
+            avg_price: 27.804,
+            lot_volume: 1229,
+            timestamp: 1551580320000,
+            current: 27.64
+          },
+          {
+            volume: 1097,
+            avg_price: 27.803,
+            lot_volume: 1097,
+            timestamp: 1551580380000,
+            current: 27.65
+          },
+          {
+            volume: 557,
+            avg_price: 27.802,
+            lot_volume: 557,
+            timestamp: 1551580440000,
+            current: 27.65
+          },
+          {
+            volume: 891,
+            avg_price: 27.802,
+            lot_volume: 891,
+            timestamp: 1551580500000,
+            current: 27.67
+          },
+          {
+            volume: 907,
+            avg_price: 27.802,
+            lot_volume: 907,
+            timestamp: 1551580560000,
+            current: 27.68
+          },
+          {
+            volume: 2087,
+            avg_price: 27.801,
+            lot_volume: 2087,
+            timestamp: 1551580620000,
+            current: 27.66
+          },
+          {
+            volume: 1422,
+            avg_price: 27.8,
+            lot_volume: 1422,
+            timestamp: 1551580680000,
+            current: 27.66
+          },
+          {
+            volume: 609,
+            avg_price: 27.799,
+            lot_volume: 609,
+            timestamp: 1551580740000,
+            current: 27.69
+          },
+          {
+            volume: 866,
+            avg_price: 27.799,
+            lot_volume: 866,
+            timestamp: 1551580800000,
+            current: 27.77
+          },
+          {
+            volume: 1522,
+            avg_price: 27.799,
+            lot_volume: 1522,
+            timestamp: 1551580860000,
+            current: 27.83
+          },
+          {
+            volume: 1626,
+            avg_price: 27.799,
+            lot_volume: 1626,
+            timestamp: 1551580920000,
+            current: 27.82
+          },
+          {
+            volume: 1282,
+            avg_price: 27.799,
+            lot_volume: 1282,
+            timestamp: 1551580980000,
+            current: 27.83
+          },
+          {
+            volume: 2271,
+            avg_price: 27.8,
+            lot_volume: 2271,
+            timestamp: 1551581040000,
+            current: 27.82
+          },
+          {
+            volume: 942,
+            avg_price: 27.8,
+            lot_volume: 942,
+            timestamp: 1551581100000,
+            current: 27.84
+          },
+          {
+            volume: 4275,
+            avg_price: 27.801,
+            lot_volume: 4275,
+            timestamp: 1551581160000,
+            current: 27.9
+          },
+          {
+            volume: 1955,
+            avg_price: 27.802,
+            lot_volume: 1955,
+            timestamp: 1551581220000,
+            current: 27.85
+          },
+          {
+            volume: 3497,
+            avg_price: 27.803,
+            lot_volume: 3497,
+            timestamp: 1551581280000,
+            current: 27.89
+          },
+          {
+            volume: 3886,
+            avg_price: 27.805,
+            lot_volume: 3886,
+            timestamp: 1551581340000,
+            current: 27.95
+          },
+          {
+            volume: 6799,
+            avg_price: 27.809,
+            lot_volume: 6799,
+            timestamp: 1551581400000,
+            current: 28.02
+          },
+          {
+            volume: 4383,
+            avg_price: 27.812,
+            lot_volume: 4383,
+            timestamp: 1551581460000,
+            current: 27.99
+          },
+          {
+            volume: 2850,
+            avg_price: 27.814,
+            lot_volume: 2850,
+            timestamp: 1551581520000,
+            current: 27.97
+          },
+          {
+            volume: 4081,
+            avg_price: 27.816,
+            lot_volume: 4081,
+            timestamp: 1551581580000,
+            current: 27.98
+          },
+          {
+            volume: 9379,
+            avg_price: 27.822,
+            lot_volume: 9379,
+            timestamp: 1551581640000,
+            current: 28.04
+          },
+          {
+            volume: 5608,
+            avg_price: 27.826,
+            lot_volume: 5608,
+            timestamp: 1551581700000,
+            current: 28.04
+          },
+          {
+            volume: 3007,
+            avg_price: 27.828,
+            lot_volume: 3007,
+            timestamp: 1551581760000,
+            current: 28.02
+          },
+          {
+            volume: 2360,
+            avg_price: 27.829,
+            lot_volume: 2360,
+            timestamp: 1551581820000,
+            current: 27.98
+          },
+          {
+            volume: 1973,
+            avg_price: 27.83,
+            lot_volume: 1973,
+            timestamp: 1551581880000,
+            current: 28
+          },
+          {
+            volume: 2507,
+            avg_price: 27.831,
+            lot_volume: 2507,
+            timestamp: 1551581940000,
+            current: 27.98
+          },
+          {
+            volume: 1883,
+            avg_price: 27.832,
+            lot_volume: 1883,
+            timestamp: 1551582000000,
+            current: 27.96
+          },
+          {
+            volume: 2686,
+            avg_price: 27.833,
+            lot_volume: 2686,
+            timestamp: 1551582060000,
+            current: 27.91
+          },
+          {
+            volume: 3466,
+            avg_price: 27.833,
+            lot_volume: 3466,
+            timestamp: 1551582120000,
+            current: 27.89
+          },
+          {
+            volume: 8459,
+            avg_price: 27.836,
+            lot_volume: 8459,
+            timestamp: 1551582180000,
+            current: 28
+          },
+          {
+            volume: 2924,
+            avg_price: 27.837,
+            lot_volume: 2924,
+            timestamp: 1551582240000,
+            current: 27.91
+          },
+          {
+            volume: 3046,
+            avg_price: 27.838,
+            lot_volume: 3046,
+            timestamp: 1551582300000,
+            current: 27.94
+          },
+          {
+            volume: 1907,
+            avg_price: 27.838,
+            lot_volume: 1907,
+            timestamp: 1551582360000,
+            current: 27.91
+          },
+          {
+            volume: 1666,
+            avg_price: 27.839,
+            lot_volume: 1666,
+            timestamp: 1551582420000,
+            current: 27.93
+          },
+          {
+            volume: 1156,
+            avg_price: 27.839,
+            lot_volume: 1156,
+            timestamp: 1551582480000,
+            current: 27.92
+          },
+          {
+            volume: 2974,
+            avg_price: 27.84,
+            lot_volume: 2974,
+            timestamp: 1551582540000,
+            current: 27.9
+          },
+          {
+            volume: 1112,
+            avg_price: 27.84,
+            lot_volume: 1112,
+            timestamp: 1551582600000,
+            current: 27.89
+          },
+          {
+            volume: 2086,
+            avg_price: 27.84,
+            lot_volume: 2086,
+            timestamp: 1551582660000,
+            current: 27.92
+          },
+          {
+            volume: 953,
+            avg_price: 27.84,
+            lot_volume: 953,
+            timestamp: 1551582720000,
+            current: 27.95
+          },
+          {
+            volume: 3664,
+            avg_price: 27.841,
+            lot_volume: 3664,
+            timestamp: 1551582780000,
+            current: 27.89
+          },
+          {
+            volume: 2049,
+            avg_price: 27.841,
+            lot_volume: 2049,
+            timestamp: 1551582840000,
+            current: 27.91
+          },
+          {
+            volume: 1596,
+            avg_price: 27.841,
+            lot_volume: 1596,
+            timestamp: 1551582900000,
+            current: 27.9
+          },
+          {
+            volume: 1051,
+            avg_price: 27.842,
+            lot_volume: 1051,
+            timestamp: 1551582960000,
+            current: 27.9
+          },
+          {
+            volume: 1588,
+            avg_price: 27.842,
+            lot_volume: 1588,
+            timestamp: 1551583020000,
+            current: 27.87
+          },
+          {
+            volume: 1068,
+            avg_price: 27.842,
+            lot_volume: 1068,
+            timestamp: 1551583080000,
+            current: 27.83
+          },
+          {
+            volume: 3422,
+            avg_price: 27.841,
+            lot_volume: 3422,
+            timestamp: 1551583140000,
+            current: 27.69
+          },
+          {
+            volume: 1788,
+            avg_price: 27.841,
+            lot_volume: 1788,
+            timestamp: 1551583200000,
+            current: 27.75
+          },
+          {
+            volume: 2446,
+            avg_price: 27.84,
+            lot_volume: 2446,
+            timestamp: 1551583260000,
+            current: 27.77
+          },
+          {
+            volume: 2521,
+            avg_price: 27.84,
+            lot_volume: 2521,
+            timestamp: 1551583320000,
+            current: 27.78
+          },
+          {
+            volume: 1640,
+            avg_price: 27.84,
+            lot_volume: 1640,
+            timestamp: 1551583380000,
+            current: 27.81
+          },
+          {
+            volume: 1005,
+            avg_price: 27.84,
+            lot_volume: 1005,
+            timestamp: 1551583440000,
+            current: 27.8
+          },
+          {
+            volume: 1723,
+            avg_price: 27.839,
+            lot_volume: 1723,
+            timestamp: 1551583500000,
+            current: 27.77
+          },
+          {
+            volume: 2008,
+            avg_price: 27.839,
+            lot_volume: 2008,
+            timestamp: 1551583560000,
+            current: 27.75
+          },
+          {
+            volume: 926,
+            avg_price: 27.839,
+            lot_volume: 926,
+            timestamp: 1551583620000,
+            current: 27.75
+          },
+          {
+            volume: 1226,
+            avg_price: 27.838,
+            lot_volume: 1226,
+            timestamp: 1551583680000,
+            current: 27.8
+          },
+          {
+            volume: 763,
+            avg_price: 27.838,
+            lot_volume: 763,
+            timestamp: 1551583740000,
+            current: 27.8
+          },
+          {
+            volume: 481,
+            avg_price: 27.838,
+            lot_volume: 481,
+            timestamp: 1551583800000,
+            current: 27.82
+          },
+          {
+            volume: 1436,
+            avg_price: 27.838,
+            lot_volume: 1436,
+            timestamp: 1551589260000,
+            current: 27.87
+          },
+          {
+            volume: 954,
+            avg_price: 27.838,
+            lot_volume: 954,
+            timestamp: 1551589320000,
+            current: 27.85
+          },
+          {
+            volume: 701,
+            avg_price: 27.838,
+            lot_volume: 701,
+            timestamp: 1551589380000,
+            current: 27.78
+          },
+          {
+            volume: 793,
+            avg_price: 27.838,
+            lot_volume: 793,
+            timestamp: 1551589440000,
+            current: 27.82
+          },
+          {
+            volume: 1333,
+            avg_price: 27.838,
+            lot_volume: 1333,
+            timestamp: 1551589500000,
+            current: 27.79
+          },
+          {
+            volume: 1786,
+            avg_price: 27.838,
+            lot_volume: 1786,
+            timestamp: 1551589560000,
+            current: 27.77
+          },
+          {
+            volume: 1627,
+            avg_price: 27.838,
+            lot_volume: 1627,
+            timestamp: 1551589620000,
+            current: 27.78
+          },
+          {
+            volume: 1742,
+            avg_price: 27.837,
+            lot_volume: 1742,
+            timestamp: 1551589680000,
+            current: 27.79
+          },
+          {
+            volume: 999,
+            avg_price: 27.837,
+            lot_volume: 999,
+            timestamp: 1551589740000,
+            current: 27.86
+          },
+          {
+            volume: 443,
+            avg_price: 27.837,
+            lot_volume: 443,
+            timestamp: 1551589800000,
+            current: 27.86
+          },
+          {
+            volume: 659,
+            avg_price: 27.837,
+            lot_volume: 659,
+            timestamp: 1551589860000,
+            current: 27.87
+          },
+          {
+            volume: 895,
+            avg_price: 27.837,
+            lot_volume: 895,
+            timestamp: 1551589920000,
+            current: 27.9
+          },
+          {
+            volume: 1993,
+            avg_price: 27.838,
+            lot_volume: 1993,
+            timestamp: 1551589980000,
+            current: 27.9
+          },
+          {
+            volume: 579,
+            avg_price: 27.838,
+            lot_volume: 579,
+            timestamp: 1551590040000,
+            current: 27.87
+          },
+          {
+            volume: 441,
+            avg_price: 27.838,
+            lot_volume: 441,
+            timestamp: 1551590100000,
+            current: 27.87
+          },
+          {
+            volume: 499,
+            avg_price: 27.838,
+            lot_volume: 499,
+            timestamp: 1551590160000,
+            current: 27.87
+          },
+          {
+            volume: 590,
+            avg_price: 27.838,
+            lot_volume: 590,
+            timestamp: 1551590220000,
+            current: 27.84
+          },
+          {
+            volume: 475,
+            avg_price: 27.838,
+            lot_volume: 475,
+            timestamp: 1551590280000,
+            current: 27.82
+          },
+          {
+            volume: 607,
+            avg_price: 27.838,
+            lot_volume: 607,
+            timestamp: 1551590340000,
+            current: 27.83
+          },
+          {
+            volume: 534,
+            avg_price: 27.838,
+            lot_volume: 534,
+            timestamp: 1551590400000,
+            current: 27.82
+          },
+          {
+            volume: 720,
+            avg_price: 27.838,
+            lot_volume: 720,
+            timestamp: 1551590460000,
+            current: 27.85
+          },
+          {
+            volume: 546,
+            avg_price: 27.838,
+            lot_volume: 546,
+            timestamp: 1551590520000,
+            current: 27.86
+          },
+          {
+            volume: 737,
+            avg_price: 27.838,
+            lot_volume: 737,
+            timestamp: 1551590580000,
+            current: 27.87
+          },
+          {
+            volume: 578,
+            avg_price: 27.838,
+            lot_volume: 578,
+            timestamp: 1551590640000,
+            current: 27.86
+          },
+          {
+            volume: 1082,
+            avg_price: 27.838,
+            lot_volume: 1082,
+            timestamp: 1551590700000,
+            current: 27.91
+          },
+          {
+            volume: 1104,
+            avg_price: 27.838,
+            lot_volume: 1104,
+            timestamp: 1551590760000,
+            current: 27.94
+          },
+          {
+            volume: 1058,
+            avg_price: 27.838,
+            lot_volume: 1058,
+            timestamp: 1551590820000,
+            current: 27.9
+          },
+          {
+            volume: 964,
+            avg_price: 27.839,
+            lot_volume: 964,
+            timestamp: 1551590880000,
+            current: 27.91
+          },
+          {
+            volume: 1340,
+            avg_price: 27.839,
+            lot_volume: 1340,
+            timestamp: 1551590940000,
+            current: 27.87
+          },
+          {
+            volume: 877,
+            avg_price: 27.839,
+            lot_volume: 877,
+            timestamp: 1551591000000,
+            current: 27.85
+          },
+          {
+            volume: 982,
+            avg_price: 27.839,
+            lot_volume: 982,
+            timestamp: 1551591060000,
+            current: 27.85
+          },
+          {
+            volume: 845,
+            avg_price: 27.839,
+            lot_volume: 845,
+            timestamp: 1551591120000,
+            current: 27.84
+          },
+          {
+            volume: 1210,
+            avg_price: 27.839,
+            lot_volume: 1210,
+            timestamp: 1551591180000,
+            current: 27.86
+          },
+          {
+            volume: 917,
+            avg_price: 27.839,
+            lot_volume: 917,
+            timestamp: 1551591240000,
+            current: 27.87
+          },
+          {
+            volume: 2279,
+            avg_price: 27.839,
+            lot_volume: 2279,
+            timestamp: 1551591300000,
+            current: 27.9
+          },
+          {
+            volume: 1826,
+            avg_price: 27.84,
+            lot_volume: 1826,
+            timestamp: 1551591360000,
+            current: 27.88
+          },
+          {
+            volume: 1599,
+            avg_price: 27.84,
+            lot_volume: 1599,
+            timestamp: 1551591420000,
+            current: 27.94
+          },
+          {
+            volume: 2976,
+            avg_price: 27.84,
+            lot_volume: 2976,
+            timestamp: 1551591480000,
+            current: 27.96
+          },
+          {
+            volume: 5399,
+            avg_price: 27.842,
+            lot_volume: 5399,
+            timestamp: 1551591540000,
+            current: 27.95
+          },
+          {
+            volume: 3473,
+            avg_price: 27.843,
+            lot_volume: 3473,
+            timestamp: 1551591600000,
+            current: 27.96
+          },
+          {
+            volume: 4718,
+            avg_price: 27.845,
+            lot_volume: 4718,
+            timestamp: 1551591660000,
+            current: 27.95
+          },
+          {
+            volume: 1806,
+            avg_price: 27.845,
+            lot_volume: 1806,
+            timestamp: 1551591720000,
+            current: 27.97
+          },
+          {
+            volume: 3996,
+            avg_price: 27.846,
+            lot_volume: 3996,
+            timestamp: 1551591780000,
+            current: 27.97
+          },
+          {
+            volume: 2434,
+            avg_price: 27.847,
+            lot_volume: 2434,
+            timestamp: 1551591840000,
+            current: 27.93
+          },
+          {
+            volume: 1651,
+            avg_price: 27.847,
+            lot_volume: 1651,
+            timestamp: 1551591900000,
+            current: 27.94
+          },
+          {
+            volume: 2718,
+            avg_price: 27.848,
+            lot_volume: 2718,
+            timestamp: 1551591960000,
+            current: 27.98
+          },
+          {
+            volume: 7274,
+            avg_price: 27.85,
+            lot_volume: 7274,
+            timestamp: 1551592020000,
+            current: 28.04
+          },
+          {
+            volume: 10813,
+            avg_price: 27.856,
+            lot_volume: 10813,
+            timestamp: 1551592080000,
+            current: 28.13
+          },
+          {
+            volume: 6336,
+            avg_price: 27.859,
+            lot_volume: 6336,
+            timestamp: 1551592140000,
+            current: 28.1
+          },
+          {
+            volume: 4114,
+            avg_price: 27.861,
+            lot_volume: 4114,
+            timestamp: 1551592200000,
+            current: 28.09
+          },
+          {
+            volume: 2566,
+            avg_price: 27.862,
+            lot_volume: 2566,
+            timestamp: 1551592260000,
+            current: 28.06
+          },
+          {
+            volume: 3196,
+            avg_price: 27.864,
+            lot_volume: 3196,
+            timestamp: 1551592320000,
+            current: 28.1
+          },
+          {
+            volume: 3763,
+            avg_price: 27.866,
+            lot_volume: 3763,
+            timestamp: 1551592380000,
+            current: 28.13
+          },
+          {
+            volume: 5572,
+            avg_price: 27.869,
+            lot_volume: 5572,
+            timestamp: 1551592440000,
+            current: 28.13
+          },
+          {
+            volume: 3721,
+            avg_price: 27.871,
+            lot_volume: 3721,
+            timestamp: 1551592500000,
+            current: 28.12
+          },
+          {
+            volume: 2137,
+            avg_price: 27.872,
+            lot_volume: 2137,
+            timestamp: 1551592560000,
+            current: 28.12
+          },
+          {
+            volume: 1812,
+            avg_price: 27.873,
+            lot_volume: 1812,
+            timestamp: 1551592620000,
+            current: 28.12
+          },
+          {
+            volume: 1547,
+            avg_price: 27.873,
+            lot_volume: 1547,
+            timestamp: 1551592680000,
+            current: 28.12
+          },
+          {
+            volume: 1317,
+            avg_price: 27.874,
+            lot_volume: 1317,
+            timestamp: 1551592740000,
+            current: 28.13
+          },
+          {
+            volume: 3401,
+            avg_price: 27.876,
+            lot_volume: 3401,
+            timestamp: 1551592800000,
+            current: 28.14
+          },
+          {
+            volume: 13963,
+            avg_price: 27.884,
+            lot_volume: 13963,
+            timestamp: 1551592860000,
+            current: 28.22
+          },
+          {
+            volume: 3447,
+            avg_price: 27.886,
+            lot_volume: 3447,
+            timestamp: 1551592920000,
+            current: 28.13
+          },
+          {
+            volume: 1691,
+            avg_price: 27.886,
+            lot_volume: 1691,
+            timestamp: 1551592980000,
+            current: 28.12
+          },
+          {
+            volume: 3031,
+            avg_price: 27.888,
+            lot_volume: 3031,
+            timestamp: 1551593040000,
+            current: 28.1
+          },
+          {
+            volume: 1785,
+            avg_price: 27.888,
+            lot_volume: 1785,
+            timestamp: 1551593100000,
+            current: 28.04
+          },
+          {
+            volume: 4498,
+            avg_price: 27.889,
+            lot_volume: 4498,
+            timestamp: 1551593160000,
+            current: 28.1
+          },
+          {
+            volume: 1555,
+            avg_price: 27.89,
+            lot_volume: 1555,
+            timestamp: 1551593220000,
+            current: 28.08
+          },
+          {
+            volume: 2160,
+            avg_price: 27.891,
+            lot_volume: 2160,
+            timestamp: 1551593280000,
+            current: 28.1
+          },
+          {
+            volume: 1166,
+            avg_price: 27.891,
+            lot_volume: 1166,
+            timestamp: 1551593340000,
+            current: 28.1
+          },
+          {
+            volume: 4174,
+            avg_price: 27.893,
+            lot_volume: 4174,
+            timestamp: 1551593400000,
+            current: 28.17
+          },
+          {
+            volume: 2963,
+            avg_price: 27.895,
+            lot_volume: 2963,
+            timestamp: 1551593460000,
+            current: 28.17
+          },
+          {
+            volume: 3388,
+            avg_price: 27.896,
+            lot_volume: 3388,
+            timestamp: 1551593520000,
+            current: 28.19
+          },
+          {
+            volume: 2539,
+            avg_price: 27.898,
+            lot_volume: 2539,
+            timestamp: 1551593580000,
+            current: 28.19
+          },
+          {
+            volume: 3329,
+            avg_price: 27.899,
+            lot_volume: 3329,
+            timestamp: 1551593640000,
+            current: 28.15
+          },
+          {
+            volume: 1529,
+            avg_price: 27.9,
+            lot_volume: 1529,
+            timestamp: 1551593700000,
+            current: 28.13
+          },
+          {
+            volume: 1008,
+            avg_price: 27.9,
+            lot_volume: 1008,
+            timestamp: 1551593760000,
+            current: 28.11
+          },
+          {
+            volume: 1188,
+            avg_price: 27.901,
+            lot_volume: 1188,
+            timestamp: 1551593820000,
+            current: 28.11
+          },
+          {
+            volume: 4205,
+            avg_price: 27.902,
+            lot_volume: 4205,
+            timestamp: 1551593880000,
+            current: 28.12
+          },
+          {
+            volume: 1536,
+            avg_price: 27.903,
+            lot_volume: 1536,
+            timestamp: 1551593940000,
+            current: 28.14
+          },
+          {
+            volume: 1571,
+            avg_price: 27.904,
+            lot_volume: 1571,
+            timestamp: 1551594000000,
+            current: 28.11
+          },
+          {
+            volume: 3257,
+            avg_price: 27.905,
+            lot_volume: 3257,
+            timestamp: 1551594060000,
+            current: 28.1
+          },
+          {
+            volume: 1718,
+            avg_price: 27.905,
+            lot_volume: 1718,
+            timestamp: 1551594120000,
+            current: 28.11
+          },
+          {
+            volume: 1838,
+            avg_price: 27.906,
+            lot_volume: 1838,
+            timestamp: 1551594180000,
+            current: 28.12
+          },
+          {
+            volume: 2061,
+            avg_price: 27.907,
+            lot_volume: 2061,
+            timestamp: 1551594240000,
+            current: 28.11
+          },
+          {
+            volume: 1810,
+            avg_price: 27.907,
+            lot_volume: 1810,
+            timestamp: 1551594300000,
+            current: 28.12
+          },
+          {
+            volume: 2041,
+            avg_price: 27.908,
+            lot_volume: 2041,
+            timestamp: 1551594360000,
+            current: 28.1
+          },
+          {
+            volume: 2703,
+            avg_price: 27.909,
+            lot_volume: 2703,
+            timestamp: 1551594420000,
+            current: 28.13
+          },
+          {
+            volume: 10482,
+            avg_price: 27.914,
+            lot_volume: 10482,
+            timestamp: 1551594480000,
+            current: 28.2
+          },
+          {
+            volume: 10045,
+            avg_price: 27.919,
+            lot_volume: 10045,
+            timestamp: 1551594540000,
+            current: 28.26
+          },
+          {
+            volume: 15716,
+            avg_price: 27.929,
+            lot_volume: 15716,
+            timestamp: 1551594600000,
+            current: 28.34
+          },
+          {
+            volume: 4673,
+            avg_price: 27.932,
+            lot_volume: 4673,
+            timestamp: 1551594660000,
+            current: 28.24
+          },
+          {
+            volume: 3668,
+            avg_price: 27.934,
+            lot_volume: 3668,
+            timestamp: 1551594720000,
+            current: 28.32
+          },
+          {
+            volume: 4700,
+            avg_price: 27.936,
+            lot_volume: 4700,
+            timestamp: 1551594780000,
+            current: 28.29
+          },
+          {
+            volume: 10804,
+            avg_price: 27.942,
+            lot_volume: 10804,
+            timestamp: 1551594840000,
+            current: 28.25
+          },
+          {
+            volume: 4332,
+            avg_price: 27.944,
+            lot_volume: 4332,
+            timestamp: 1551594900000,
+            current: 28.25
+          },
+          {
+            volume: 7589,
+            avg_price: 27.948,
+            lot_volume: 7589,
+            timestamp: 1551594960000,
+            current: 28.3
+          },
+          {
+            volume: 8696,
+            avg_price: 27.953,
+            lot_volume: 8696,
+            timestamp: 1551595020000,
+            current: 28.32
+          },
+          {
+            volume: 11681,
+            avg_price: 27.959,
+            lot_volume: 11681,
+            timestamp: 1551595080000,
+            current: 28.36
+          },
+          {
+            volume: 7544,
+            avg_price: 27.963,
+            lot_volume: 7544,
+            timestamp: 1551595140000,
+            current: 28.33
+          },
+          {
+            volume: 6172,
+            avg_price: 27.967,
+            lot_volume: 6172,
+            timestamp: 1551595200000,
+            current: 28.34
+          },
+          {
+            volume: 15183,
+            avg_price: 27.976,
+            lot_volume: 15183,
+            timestamp: 1551595260000,
+            current: 28.41
+          },
+          {
+            volume: 7130,
+            avg_price: 27.98,
+            lot_volume: 7130,
+            timestamp: 1551595320000,
+            current: 28.38
+          },
+          {
+            volume: 2360,
+            avg_price: 27.981,
+            lot_volume: 2360,
+            timestamp: 1551595380000,
+            current: 28.32
+          },
+          {
+            volume: 3348,
+            avg_price: 27.983,
+            lot_volume: 3348,
+            timestamp: 1551595440000,
+            current: 28.3
+          },
+          {
+            volume: 5589,
+            avg_price: 27.985,
+            lot_volume: 5589,
+            timestamp: 1551595500000,
+            current: 28.29
+          },
+          {
+            volume: 5609,
+            avg_price: 27.987,
+            lot_volume: 5609,
+            timestamp: 1551595560000,
+            current: 28.31
+          },
+          {
+            volume: 3368,
+            avg_price: 27.989,
+            lot_volume: 3368,
+            timestamp: 1551595620000,
+            current: 28.27
+          },
+          {
+            volume: 3447,
+            avg_price: 27.99,
+            lot_volume: 3447,
+            timestamp: 1551595680000,
+            current: 28.3
+          },
+          {
+            volume: 2748,
+            avg_price: 27.991,
+            lot_volume: 2748,
+            timestamp: 1551595740000,
+            current: 28.32
+          },
+          {
+            volume: 8064,
+            avg_price: 27.995,
+            lot_volume: 8064,
+            timestamp: 1551595800000,
+            current: 28.39
+          },
+          {
+            volume: 12690,
+            avg_price: 28.002,
+            lot_volume: 12690,
+            timestamp: 1551595860000,
+            current: 28.45
+          },
+          {
+            volume: 4886,
+            avg_price: 28.005,
+            lot_volume: 4886,
+            timestamp: 1551595920000,
+            current: 28.42
+          },
+          {
+            volume: 6608,
+            avg_price: 28.008,
+            lot_volume: 6608,
+            timestamp: 1551595980000,
+            current: 28.4
+          },
+          {
+            volume: 6569,
+            avg_price: 28.012,
+            lot_volume: 6569,
+            timestamp: 1551596040000,
+            current: 28.43
+          },
+          {
+            volume: 22997,
+            avg_price: 28.025,
+            lot_volume: 22997,
+            timestamp: 1551596100000,
+            current: 28.49
+          },
+          {
+            volume: 14537,
+            avg_price: 28.034,
+            lot_volume: 14537,
+            timestamp: 1551596160000,
+            current: 28.52
+          },
+          {
+            volume: 9832,
+            avg_price: 28.039,
+            lot_volume: 9832,
+            timestamp: 1551596220000,
+            current: 28.51
+          },
+          {
+            volume: 393,
+            avg_price: 28.039,
+            lot_volume: 393,
+            timestamp: 1551596280000,
+            current: 28.5
+          },
+          {
+            volume: 0,
+            avg_price: 28.039,
+            lot_volume: 0,
+            timestamp: 1551596340000,
+            current: 28.52
+          },
+          {
+            volume: 19778,
+            avg_price: 28.051,
+            lot_volume: 19778,
+            timestamp: 1551596400000,
+            current: 28.54
+          }
+        ]
+      };
+    </script>
+    <script>
+      function timeLabels() {
+        for (var t = [], e = 570; e <= 690; e++)
+          t.push(
+            Math.floor(e / 60) + ":" + (e % 60 < 10 ? "0" + (e % 60) : e % 60)
+          );
+        for (var e = 781; e <= 900; e++)
+          t.push(
+            Math.floor(e / 60) + ":" + (e % 60 < 10 ? "0" + (e % 60) : e % 60)
+          );
+        return t;
+      }
+
+      var i = timeLabels(),
+        n = 27.99, // 收盘价
+        c = 30.79, // 当天涨停值
+        l = 25.19, // 当天跌停值
+        u = (c - n) / n, // 涨停区间每个间隔
+        d = (l - n) / n, // 跌停区间每个间隔
+        h = u >= Math.abs(d) ? u : Math.abs(d), // 比较哪个间隔更大
+        S = 0,
+        k = [], // 平均价格
+        f = [], // 涨跌幅比率 数据列表
+        b = {}; // 存储每个涨跌幅时间对应的数据
+      data_list.vRTMinData.forEach(function(t) {
+        var e = new Date(t.timestamp),
+          a = `${e.getHours()}:${
+            e.getMinutes() < 10 ? "0" + e.getMinutes() : e.getMinutes()
+          }`,
+          o = (t.current - n) / n; // 涨跌幅比率
+        f.push(t.avg_price), //
+          (b[a] = o), // 时间区间对应的比率
+          Math.abs(o) > S && (S = Math.abs(o)); // 代表存在跌幅，0无涨跌
+      });
+      for (var m = 0; m < i.length; m++) {
+        b[i[m]] != undefined ? k.push(b[i[m]]) : k.push(null);
+      }
+      var y = h;
+      S + 0.005 < h && 0 != S && (y = S + 0.005); // 计算y轴的最大间隔，是涨跌停的大还是，当前价格的间隔大
+      var x = y * n + n, // y轴最大
+        v = n - y * n; // y轴最小
+      var option = {
+        backgroundColor: "#fff",
+        animation: false,
+        // tooltip: {
+        //   trigger: "axis"
+        // },
+        grid: {
+          x: 0,
+          x2: 1,
+          y: 0
+        },
+        xAxis: {
+          show: true,
+          type: "category",
+          boundaryGap: false,
+          data: timeLabels(),
+          offset: 25, // https://www.echartsjs.com/option.html#xAxis.offset
+          axisLine: {
+            onZero: false, // https://www.echartsjs.com/option.html#xAxis.axisLine.onZero
+            lineStyle: {
+              color: "#F7F7F7"
+            }
+          },
+          axisTick: {
+            show: true,
+            inside: true,
+            length: 50,
+            interval: 239
+          },
+          splitLine: {
+            show: true,
+            lineStyle: {
+              color: "#F7F7F7"
+            }
+          },
+          axisLabel: {
+            show: true,
+            inside: true,
+            interval: 119,
+            textStyle: {
+              color: "#777",
+              fontSize: 12
+            },
+            formatter: function(t) {
+              return "9:30" == t
+                ? "{a|" + t + "}"
+                : "15:00" == t
+                ? "{b|" + t + "}"
+                : t;
+            },
+            rich: {
+              a: {
+                padding: [0, -35, 0, 0],
+                fontSize: 12
+              },
+              b: {
+                padding: [0, 35, 0, 0],
+                fontSize: 12
+              }
+            }
+          }
+        },
+        yAxis: [
+          {
+            type: "value",
+            max: x,
+            min: v,
+            interval: (x - v) / 1,
+            axisLine: {
+              lineStyle: {
+                color: "#F7F7F7"
+              }
+            },
+            splitLine: {
+              show: true,
+              lineStyle: {
+                color: "#F7F7F7"
+              }
+            },
+            axisTick: {
+              show: false
+            },
+            axisLabel: {
+              inside: !0,
+              formatter: function(t) {
+                return t == v
+                  ? "{a|" + t.toFixed(2) + "}"
+                  : "{b|" + t.toFixed(2) + "}";
+              },
+              rich: {
+                a: {
+                  padding: [30, 0, 0, 0],
+                  fontSize: 12,
+                  color: "RGB(15,195,81)"
+                },
+                b: {
+                  padding: [-30, 0, 0, 0],
+                  fontSize: 12,
+                  color: "RGB(255,61,61)"
+                }
+              }
+            }
+          },
+          {
+            type: "value",
+            max: y,
+            min: 0 - y,
+            interval: (2 * y) / 2,
+            axisLine: {
+              lineStyle: {
+                color: "#F7F7F7"
+              }
+            },
+            splitLine: {
+              lineStyle: {
+                color: "#F7F7F7"
+              }
+            },
+            axisTick: {
+              show: false
+            },
+            axisLabel: {
+              inside: !0,
+              formatter: function(t) {
+                return 0 == t
+                  ? "{a|}"
+                  : t == y
+                  ? "{b|" + (100 * t).toFixed(2) + "%}"
+                  : "{a|" + (100 * t).toFixed(2) + "%}";
+              },
+              rich: {
+                a: {
+                  padding: [30, 0, 0, 0],
+                  fontSize: 12,
+                  color: "RGB(15,195,81)"
+                },
+                b: {
+                  padding: [-30, 0, 0, 0],
+                  fontSize: 12,
+                  color: "RGB(255,61,61)"
+                }
+              }
+            }
+          }
+        ],
+        series: [
+          {
+            name: "",
+            type: "line",
+            symbol: "none",
+            data: k,
+            yAxisIndex: 1,
+            lineStyle: {
+              color: "rgb(49, 142, 250)",
+              width: 1
+            },
+            areaStyle: {
+              normal: {
+                origin: "start",
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                  { offset: 0, color: "rgba(80,141,255,0.39)" },
+                  { offset: 0.34, color: "rgba(56,155,255,0.25)" },
+                  { offset: 1, color: "rgba(38,197,254,0.00)" }
+                ])
+              }
+            }
+          },
+          {
+            name: "",
+            type: "line",
+            symbol: "none",
+            data: f,
+            yAxisIndex: 0,
+            lineStyle: {
+              color: "rgb(253,143,45)",
+              width: 1.2
+            }
+          }
+        ]
+      };
+      var s = echarts.init(document.getElementById("echartid"));
+      s.setOption(option);
+      window.addEventListener("resize", function(params) {
+        s.resize();
+      });
+    </script>
+  </body>
+</html>
